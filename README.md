@@ -9,6 +9,7 @@ _______
 - простой туториал по началу работы с pyQt - [тут](https://pythonworld.ru/gui/pyqt5-firstprograms.html)
 - использование QtDesigner через наследование класса виджета/окна (важно, используется именно такой подход) - [тут](https://tproger.ru/translations/python-gui-pyqt/)
 - [тут](https://cucumbler.ru/blog/articles/nastrojka-pycharm-dlja-raboty-s-bibliotekoj-pyqt5.html) и [тут](https://pythonpyqt.com/how-to-install-pyqt5-in-pycharm/) описан подход использования QtDesigner из под pyCharm
+
 При разработке ~~можно~~ **нужно** обращаться к следующим ресурсам
 - длинный [туториал](https://python-scripts.com/pyqt5) по pyQt
 - полное [описание](https://doc.qt.io/qt-5/index.html) всех классов Qt5 но все примеры на c++
@@ -18,10 +19,11 @@ _______
 # Что такое [Qt](https://ru.wikipedia.org/wiki/Qt)
 Rроссплатформенный IDE для разработки программного обеспечения на языке программирования C++. 
 Есть также «привязки» ко многим другим языкам программирования: 
--Python — PyQt, PySide;
--Ruby — QtRuby;
--Java — Qt Jambi;
--PHP — PHP-Qt и другие.
+- Python — PyQt, PySide;
+- Ruby — QtRuby;
+- Java — Qt Jambi;
+- PHP — PHP-Qt и другие.
+
 Хорошо развит, широко поддерживается, имеет кучу обучающих материалов и примеров. Замечательно документирован. Кроссплатформенный, бесплатный (лицензия GPL3).
 
 # Что такое [pyQt](https://ru.wikipedia.org/wiki/PyQt)
@@ -50,7 +52,7 @@ pyQt реализует практически весь функционал Qt 
 3. Модуль для QtDesigner 
     oai_kpa_xxx_**yyy_qt**:
       - yyy - назначение модуля: widget, window, etc (oai_kpa_stm_widget_qt для данного примера)
-      - _qt - обозначение источника файла - не написанный руками, а сгенеренный QtDesigner
+      - qt - обозначение источника файла - не написанный руками, а сгенеренный QtDesigner
 
 # Предподготовка
 _Обязательно_
@@ -58,10 +60,7 @@ _Обязательно_
 2. Python 3.7 или 3.8 (Рекомендуется)
 3. pyserial, puQt5, pyqtgraph, matplotlib
 _Работа с примером_
-4. Скачайте архив с библиотекой или клонируйте репозиторий к себе на локальный диск:
-```
-git clone https://github.com/a-styuf/oai_kpa_stm
-```
+4. Скачайте архив с библиотекой или клонируйте [репозиторий](https://github.com/a-styuf/oai_kpa_stm) к себе на локальный диск: `git clone https://github.com/a-styuf/oai_kpa_stm)`.
 5. Переименуйте все необходимые файлы.
 
 # Обязательный функционал
@@ -76,9 +75,7 @@ git clone https://github.com/a-styuf/oai_kpa_stm
     - [пример 2](https://python-scripts.com/threading)
 5. Вывод актуального состояния в строку состояния.
 
-------
-#Контакты руководителя проекта: __a-styuf@yandex.ru__  
-
-
-
-[]: https://pythonworld.ru/gui/pyqt5-firstprograms.html
+# Проблемы и ошибки
+В случае проблем, предложений и вопросов прошу создавать темеу через github-овские [issues](https://github.com/a-styuf/oai_kpa_stm/issues)
+и обращаться ко мне через whatsapp и почту  
+ 
