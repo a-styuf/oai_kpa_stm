@@ -1,3 +1,5 @@
+import json
+
 from PyQt5 import QtWidgets, QtCore, QtGui
 import sys
 import time
@@ -13,16 +15,22 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
         # обязательная часть для запуска виджета
         super().__init__()
         self.setupUi(self)
-        # достаем неименованные переменные из *args
-        # достаем именованные переменные из **kwargs
-        self.serial_number = kwargs.get('serial_num', '20713699424D')
-        self.widget_mode = kwargs.get('widget', True)
+        # словарь настройки (здесь же обрабатывается параметры **kwargs)
+        self.uniq_name = kwargs.get("uniq_name", 'oai_kpa_stm_un')
+        self.core_cfg = {'serial_num': '20713699424D',
+                         'widget': True}
+        self.user_cfg = {'example': 'xxx'}
+        self.default_cfg = {'core': self.core_cfg,
+                            'user': self.user_cfg
+                            }
+        self.loaded_cfg = self.load_cfg()
+        self.cfg = self.cfg_process(self.loaded_cfg, kwargs)
         # отслеживание состояния окна
         self.state = 0
         # # Изменяемая часть окна # #
-        self.moduleSerialNumberLEdit.setText(self.serial_number)
+        self.moduleSerialNumberLEdit.setText(self.cfg["core"]["serial_num"])
         # Часть под правку: здесь вы инициализируете необходимые компоненты
-        self.module = oia_kpa_stm_data.OaiKpaSTM(serial_num=self.serial_number)
+        self.module = oia_kpa_stm_data.OaiKpaSTM(serial_num=self.cfg["core"]["serial_num"])
         # the table for stm_channels data visualisation
         self.stm_color_map = {0: "darkturquoise", 1: "darkseagreen", 2: "lightcoral"}
         self.stm_table_column, self.stm_table_row = 4, 8
@@ -39,6 +47,24 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
         self.cycleReadPushButton.setStyleSheet('QLineEdit {background-color: %s;}' % "lightgray")
         # описываем элементы стандартного окна
         self.connectionPButton.clicked.connect(self.reconnect)
+
+    @staticmethod
+    def cfg_process(default_cfg, new_cfg):
+        """
+        Process default and new cfg-s and forms actual cfg
+        :param default_cfg: default parameters set
+        :param new_cfg: cfg to update
+        :return: actual_cfg
+        """
+        cfg = default_cfg
+        for key, value in new_cfg.items():
+            for c_key, c_value in default_cfg["core"].items():
+                if c_key == key:
+                    cfg["core"][key] = value
+            for c_key, c_value in default_cfg["user"].items():
+                if c_key == key:
+                    cfg["user"][key] = value
+        return cfg
 
     def connection_state_check(self):
         if self.module.state == -2:
@@ -60,12 +86,14 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
     def connect(self):
         serial_number = self.moduleSerialNumberLEdit.text()
         if re.findall(r"[0-9a-fA-F]{8,12}", serial_number):
-            self.serial_number = serial_number
+            self.cfg["core"]["serial_num"] = serial_number
         else:
             serial_number = self.serial_number
-            self.moduleSerialNumberLEdit.setText(self.serial_number)
+            self.moduleSerialNumberLEdit.setText(self.cfg["core"]["serial_num"])
         self.module.connect(serial_num=serial_number)
         self.connection_state_check()
+        #
+        self.save_cfg()
         pass
 
     def disconnect(self):
@@ -73,7 +101,7 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
         self.connection_state_check()
         pass
 
-    def reconnect(self, serial_num=None):
+    def reconnect(self):
         self.disconnect()
         self.connect()
         self.connection_state_check()
@@ -118,6 +146,33 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
         table.setItem(row, column, table_item)
         pass
 
+    def save_cfg(self):
+        try:
+            os.mkdir("cfg")
+        except OSError as error:
+            pass
+        #
+        with open("cfg\\" + self.uniq_name +".json", 'w') as cfg_file:
+            json.dump(self.cfg, cfg_file)
+
+    def save_default_cfg(self):
+        try:
+            os.mkdir("cfg")
+        except OSError as error:
+            pass
+        #
+        with open("cfg\\" + self.uniq_name + ".json", 'w') as cfg_file:
+            json.dump(self.default_cfg, cfg_file)
+
+    def load_cfg(self):
+        loaded_cfg = {}
+        try:
+            with open("cfg\\" + self.uniq_name +".json", 'r') as cfg_file:
+                loaded_cfg = json.load(cfg_file)
+        except FileNotFoundError:
+            loaded_cfg = self.default_cfg
+        return loaded_cfg
+
     def closeEvent(self, event):
         #
         pass
@@ -125,6 +180,6 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
 
 if __name__ == '__main__':  # Если мы запускаем файл напрямую, а не импортируем
     app = QtWidgets.QApplication(sys.argv)
-    w = ClientGUIWindow(widget='False')
+    w = ClientGUIWindow(uniq_name="oai_kpa_stm", widget='False')
     w.show()
     sys.exit(app.exec_())

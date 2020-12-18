@@ -1,14 +1,19 @@
 import time
 import threading
-#
-try:
-    import OAI_Modbus as oai_modbus
-except ImportError:
-    import oai_modbus
+import oai_modbus
+import json
+
+
+class CfgParameter:
+    def __init__(self, **kwargs):
+        self.serial_number = kwargs.get('serial_num', '20713699424D')
 
 
 class OaiKpaSTM:
     def __init__(self, *args, **kwargs):
+        # объект с параметрами
+        self.cfg = CfgParameter(serial_num="20713699424D")
+        
         # разбор именованных параметров
         self.serial_number = kwargs.get('serial_num', '20713699424D')
         self.debug = kwargs.get('debug', False)
