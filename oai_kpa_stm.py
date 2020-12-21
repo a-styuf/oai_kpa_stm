@@ -6,27 +6,39 @@ import time
 import os
 import re
 import oia_kpa_stm_data
-import oai_kpa_stm_widget
+import oai_kpa_stm_widget_qt
 
 
-class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
+class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget_qt.Ui_Form):
     def __init__(self, *args, **kwargs):
         # # Стандартная часть окна # #
-        # обязательная часть для запуска виджета
+        # обязательная часть для запуска Qt-виджета
         super().__init__()
         self.setupUi(self)
-        # словарь настройки (здесь же обрабатывается параметры **kwargs)
+        # создание и обработка словаря настройки (здесь же обрабатывается параметры **kwargs)
         self.uniq_name = kwargs.get("uniq_name", 'oai_kpa_stm_un')
+        # настройки по умолчанию
+        # настройки не для изменения (одинаковые для каждого типа плат)
         self.core_cfg = {'serial_num': '20713699424D',
                          'widget': True}
-        self.user_cfg = {'example': 'xxx'}
+        # настройки для вашего модуля (разные для каждого типа плат)
+        self.channels_default_parameters = {num: "АЦП %d К %d" % (num//16, num%16)
+                                            for num in range(32)}
+        self.user_cfg = {"channels": self.channels_default_parameters}
         self.default_cfg = {'core': self.core_cfg,
                             'user': self.user_cfg
                             }
+        #
         self.loaded_cfg = self.load_cfg()
         self.cfg = self.cfg_process(self.loaded_cfg, kwargs)
+        # скрываем ненужные элементы
+        if self.cfg["core"]["widget"] is str(True):
+            self.connectionPButton.hide()
+        # описываем элементы стандартного окна
+        self.connectionPButton.clicked.connect(self.reconnect)
         # отслеживание состояния окна
         self.state = 0
+
         # # Изменяемая часть окна # #
         self.moduleSerialNumberLEdit.setText(self.cfg["core"]["serial_num"])
         # Часть под правку: здесь вы инициализируете необходимые компоненты
@@ -36,17 +48,16 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
         self.stm_table_column, self.stm_table_row = 4, 8
         self.table_values = [[{"voltage": 0.0, "color": "gray"}for i in range(self.stm_table_row)]
                              for j in range(self.stm_table_column)]
-        #
+        # Таймер для создания всевдопотока для обновления GUI и сохранения данных в лог
         self.data_update_timer = QtCore.QTimer()
         self.data_update_timer.timeout.connect(self.update_data)
-        self.data_update_timer.start(1000)
-        #
+        self.data_update_timer.start(500)
+        # Кнопки для управления модулем
         self.singleReadPushButton.clicked.connect(self.fill_table_data_from_stm_data)
         self.cycleReadPushButton.clicked.connect(self.cycle_reading)
         self.cycle_reading_flag = False
         self.cycleReadPushButton.setStyleSheet('QLineEdit {background-color: %s;}' % "lightgray")
-        # описываем элементы стандартного окна
-        self.connectionPButton.clicked.connect(self.reconnect)
+
 
     @staticmethod
     def cfg_process(default_cfg, new_cfg):
@@ -130,8 +141,11 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
                     for row in range(self.stm_table_row):
                         adc_num, ch_num = column // 2, row + self.stm_table_row*(column % 2)
                         value, state = self.module.get_channel_values(adc_num, ch_num)
-                        self.__fill_single_socket(self.stmTableWidget, row, column, value,
+                        self.__fill_single_socket(self.stmTableWidget, row, 2*column+1, value,
                                                   color=self.stm_color_map.get(state, "white"))
+                        name = self.cfg["user"]["channels"][str(adc_num*16 + ch_num)]
+                        self.__fill_single_socket(self.stmTableWidget, row, 2*column, name,
+                                                  color="white")
             else:
                 pass
         except Exception as error:
@@ -139,7 +153,12 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
 
     @staticmethod
     def __fill_single_socket(table, row, column, value, color=None):
-        table_item = QtWidgets.QTableWidgetItem("%.3f V" % value)
+        if type(value) == str:
+            table_item = QtWidgets.QTableWidgetItem(value)
+        elif type(value) == float:
+            table_item = QtWidgets.QTableWidgetItem("%.3f V" % value)
+        else:
+            table_item = QtWidgets.QTableWidgetItem("%s" % value)
         table_item.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
         if color:
             table_item.setBackground(QtGui.QColor(color))
@@ -152,8 +171,8 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
         except OSError as error:
             pass
         #
-        with open("cfg\\" + self.uniq_name +".json", 'w') as cfg_file:
-            json.dump(self.cfg, cfg_file)
+        with open("cfg\\" + self.uniq_name + ".json", 'w', encoding="utf-8") as cfg_file:
+            json.dump(self.cfg, cfg_file, sort_keys=True, indent=4, ensure_ascii=False)
 
     def save_default_cfg(self):
         try:
@@ -161,20 +180,19 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget.Ui_Form):
         except OSError as error:
             pass
         #
-        with open("cfg\\" + self.uniq_name + ".json", 'w') as cfg_file:
-            json.dump(self.default_cfg, cfg_file)
+        with open("cfg\\" + self.uniq_name + ".json", 'w', encoding="utf-8") as cfg_file:
+            json.dump(self.default_cfg, cfg_file, sort_keys=True, indent=4, ensure_ascii=False)
 
     def load_cfg(self):
-        loaded_cfg = {}
         try:
-            with open("cfg\\" + self.uniq_name +".json", 'r') as cfg_file:
+            with open("cfg\\" + self.uniq_name + ".json", 'r', encoding="utf-8") as cfg_file:
                 loaded_cfg = json.load(cfg_file)
         except FileNotFoundError:
             loaded_cfg = self.default_cfg
         return loaded_cfg
 
     def closeEvent(self, event):
-        #
+        self.save_cfg()
         pass
 
 

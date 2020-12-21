@@ -17,7 +17,7 @@ class OaiKpaSTM:
         # разбор именованных параметров
         self.serial_number = kwargs.get('serial_num', '20713699424D')
         self.debug = kwargs.get('debug', False)
-        # создание объекта для общения по модбас
+        # создание объекта для общения по МодБас
         self.client = oai_modbus.OAI_Modbus(serial_num=[self.serial_number])
         self.client.debug_print_flag = True
         # параметры связи
@@ -118,8 +118,11 @@ class OaiKpaSTM:
                 # set control register
                 control_register = ((0x02 << 10) | ((ch_num & 0x0F) << 6) | (0x03 << 4) | (0x01 << 2) | (0x01 << 0)) << 4
                 self.client.write_regs(offset=1276, data_list=[control_register, 0x00])
-                self.client.write_regs(offset=1266, data_list=[1, 0, 1, 1, 0, 1, 1])
-                # stm_mod.client.write_regs(offset=1266, data_list=[1, 0, 1, 1, 0, 1, 2])
+
+                if adc_num == 0:
+                    self.client.write_regs(offset=1266, data_list=[1, 0, 1, 1, 0, 1, 1])
+                else:
+                    self.client.write_regs(offset=1266, data_list=[1, 0, 1, 1, 0, 1, 2])
                 # release cs
                 # stm_mod.client.write_regs(offset=1060, data_list=[0x1C00, 0x0000, 0x0000, 0x0000])
                 # stm_mod.client.write_regs(offset=1064, data_list=[0x1C00, 0x0000, 0x0000, 0x0000])
@@ -128,6 +131,9 @@ class OaiKpaSTM:
 
                 channel_num = (self.client.ai_register_map[2074] >> 12) & 0x0F
                 channel_data = (self.client.ai_register_map[2074] & 0xFFF) << 0
+
+                print("%04X" % self.client.ai_register_map[2074])
+
                 if channel_num != ch_num:
                     # raise ValueError("Error with adc channel")
                     pass
