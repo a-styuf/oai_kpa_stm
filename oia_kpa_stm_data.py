@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import time
 import threading
 import oai_modbus
@@ -151,6 +153,21 @@ class OaiKpaSTM:
         with self.adc_data_lock:
             try:
                 return self.channel_adc_voltage[adc][ch_num], self.channel_state[adc][ch_num]
+            except IndexError:
+                raise IndexError("Incorrect adc (0, 1) or channel number(0-15")
+
+    def get_channels_values(self):
+        """
+        return state of all adc_channels
+        :return: list of value pairs of voltage and state (0 - open, 1 - short, 2 - undefined)
+        """
+        with self.adc_data_lock:
+            try:
+                val_list = [self.channel_adc_voltage[adc][ch_num] for ch_num in range(self.adc_param["channel_num"])
+                            for adc in range(self.adc_param["adc_num"])]
+                state_list = [self.channel_state[adc][ch_num] for ch_num in range(self.adc_param["channel_num"])
+                              for adc in range(self.adc_param["adc_num"])]
+                return val_list, state_list
             except IndexError:
                 raise IndexError("Incorrect adc (0, 1) or channel number(0-15")
 
