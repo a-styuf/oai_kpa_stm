@@ -9,9 +9,8 @@ import os
 import re
 import json
 # модули ОАИ_КПА
-import oia_kpa_stm_data
-import oai_kpa_stm_widget_qt
-
+from . import oai_kpa_stm_widget_qt
+from . import oia_kpa_stm_data
 
 class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget_qt.Ui_Form):
     def __init__(self, *args, **kwargs):

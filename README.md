@@ -1,16 +1,5 @@
 ﻿# Пример виджета для модуля ОАИ КПА (_oai_kpa_stm_) 
 _______
-# Installation
-pip install https://github.com/a-styuf/oai_kpa_stm/releases/download/v.0.1.0/oai_kpa_stm-0.1.0-py3-none-any.whl
-
-or
-
-pip install  https://github.com/a-styuf/oai_kpa_stm/releases/download/v.0.1.0/oai_kpa_stm-0.1.0.tar.gz
-
-# Update
-pip uninstall oai_modbus
-and do Installation
-_______
 Данный виджет служит двум целям: 
 - либо использование отдельно в качестве инженерного окна для отладки и работы с модулем.
 - либо в составе большей программы как инженерное окно 
@@ -153,3 +142,4 @@ pause
 # Проблемы и ошибки
 В случае проблем, предложений и вопросов прошу создавать тему через github-овские [issues](https://github.com/a-styuf/oai_kpa_stm/issues)
 и обращаться ко мне через whatsapp и почту  
+ 
