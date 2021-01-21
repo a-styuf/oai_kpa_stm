@@ -12,6 +12,7 @@ import json
 from . import oai_kpa_stm_widget_qt
 from . import oia_kpa_stm_data
 
+
 class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget_qt.Ui_Form):
     def __init__(self, *args, **kwargs):
         # # Стандартная часть окна # #
@@ -346,10 +347,3 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget_qt.Ui_Form):
     def closeEvent(self, event):
         self.save_cfg()
         pass
-
-
-if __name__ == '__main__':  # Если мы запускаем файл напрямую, а не импортируем
-    app = QtWidgets.QApplication(sys.argv)
-    w = ClientGUIWindow(uniq_name="oai_kpa_stm", widget='False')
-    w.show()
-    sys.exit(app.exec_())
