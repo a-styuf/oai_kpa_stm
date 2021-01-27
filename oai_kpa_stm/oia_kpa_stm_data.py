@@ -2,20 +2,13 @@
 
 import time
 import threading
+# pip install https://github.com/CrinitusFeles/OaiModbus/releases/download/v.1.1/OAI_ModBus-0.1.1.tar.gz
 import oai_modbus
 import json
 
 
-class CfgParameter:
-    def __init__(self, **kwargs):
-        self.serial_number = kwargs.get('serial_num', '20713699424D')
-
-
 class OaiKpaSTM:
     def __init__(self, *args, **kwargs):
-        # объект с параметрами
-        self.cfg = CfgParameter(serial_num="20713699424D")
-        
         # разбор именованных параметров
         self.serial_number = kwargs.get('serial_num', '20713699424D')
         self.debug = kwargs.get('debug', False)
@@ -222,7 +215,7 @@ class OaiKpaSTM:
 
 if __name__ == '__main__':
     itteration_num = 0
-    stm_mod = OaiKpaSTM(serial_num="20713699424D", debug=False)
+    stm_mod = OaiKpaSTM(serial_num="2082369E424D", debug=False)
     print("Connect")
     stm_mod.connect()
     #
