@@ -6,3 +6,4 @@ tests
 poetry.lock
 create_py_from.bat
 __pycache__
+/oai_kpa_stm/log/
