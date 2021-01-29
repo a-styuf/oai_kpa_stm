@@ -10,39 +10,29 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a291e471-4f70-432a-aa79-7c1af58f36d6" name="Default Changelist" comment="">
+    <list default="true" id="a291e471-4f70-432a-aa79-7c1af58f36d6" name="Default Changelist" comment="1.02 Возвращение скрипта для генерации py из ui">
       <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/oai_kpa_stm.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/workspace (2).xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/log/2020_12_22 oai_kpa_stm/2020_12_22 13-18-35 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/log/2020_12_23 oai_kpa_stm/2020_12_23 18-55-01 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/log/2020_12_23 oai_kpa_stm/2020_12_23 19-49-48 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/log/2020_12_23 oai_kpa_stm/2020_12_23 20-05-04 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/log/2020_12_23 oai_kpa_stm/2020_12_23 20-28-44 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/log/2021_01_14 oai_kpa_stm/2021_01_14 20-16-58 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/log/2021_01_15 oai_kpa_stm/2021_01_15 17-50-14 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/cfg/oai_kpa_stm.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/create_py_from_ui.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_15 oai_kpa_stm/2021_01_15 18-45-39 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 12-10-44 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 12-11-01 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 12-23-40 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 12-24-48 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 13-41-44 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 16-13-46 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 17-38-00 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 17-39-30 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 17-40-17 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 17-41-14 oai_kpa_stm .csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 17-43-17 oai_kpa_stm .csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/oai_kpa_stm.py" beforeDir="false" afterPath="$PROJECT_DIR$/oai_kpa_stm/oai_kpa_stm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/oia_kpa_stm_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/oai_kpa_stm/oia_kpa_stm_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/.idea/oai_kpa_stm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/oai_kpa_stm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_15 oai_kpa_stm/2021_01_15 18-45-39 oai_kpa_stm .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 12-10-44 oai_kpa_stm .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 12-11-01 oai_kpa_stm .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 12-23-40 oai_kpa_stm .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 12-24-48 oai_kpa_stm .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 13-41-44 oai_kpa_stm .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 16-13-46 oai_kpa_stm .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 17-38-00 oai_kpa_stm .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 17-39-30 oai_kpa_stm .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 17-40-17 oai_kpa_stm .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 17-41-14 oai_kpa_stm .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oai_kpa_stm/log/2021_01_16 oai_kpa_stm/2021_01_16 17-43-17 oai_kpa_stm .csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +49,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="78" />
@@ -93,6 +91,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/venv/Lib/site-packages/oai_modbus/OAI_Modbus.py" />
@@ -106,7 +105,28 @@
       <recent name="D:\YandexDisk\Work\Python\pyqt_based\oai_kpa\oai_kpa_stm" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.oai_kpa_stm">
+  <component name="RunManager" selected="Python.__main__">
+    <configuration name="__main__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="oai_kpa_stm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/__main__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="oai_kpa_stm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="oai_kpa_stm" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -151,6 +171,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.__main__" />
         <item itemvalue="Python.oai_kpa_stm" />
         <item itemvalue="Python.oia_kpa_stm_data" />
       </list>
@@ -224,7 +245,28 @@
       <option name="project" value="LOCAL" />
       <updated>1610630827474</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="1.02 Возвращение скрипта для генерации py из ui">
+      <created>1611752304200</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1611752304204</updated>
+    </task>
+    <task id="LOCAL-00010" summary="1.03 Правки&#10; - поправлен алгоритм вычитывания и разбора&#10; - поправлен конфиг-файл для БДК2">
+      <created>1611843779666</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1611843779666</updated>
+    </task>
+    <task id="LOCAL-00011" summary="1.04 Проблема с задержкой при чтении">
+      <created>1611844464244</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1611844464244</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -286,7 +328,10 @@
     <MESSAGE value="0.04 Скрывающиеся элементы интерфейса&#10; - переработан дизайн, теперь все обязательные части окна снизу под чертой&#10; - добавлен изменение режима работы виджета путем установки параметра &quot;widget&quot;" />
     <MESSAGE value="1.00 Полнофункциональный модуль-виджет&#10; - реализовано сохранение данных в лог файл&#10; - переформатирован код&#10; -! возможно использовать для шаблона GUI" />
     <MESSAGE value="1.01 Сделана сборка через poetry" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.01 Сделана сборка через poetry" />
+    <MESSAGE value="1.02 Возвращение скрипта для генерации py из ui" />
+    <MESSAGE value="1.03 Правки&#10; - поправлен алгоритм вычитывания и разбора&#10; - поправлен конфиг-файл для БДК2" />
+    <MESSAGE value="1.04 Проблема с задержкой при чтении" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.04 Проблема с задержкой при чтении" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
