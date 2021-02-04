@@ -127,16 +127,17 @@ class OaiKpaSTM:
                 time.sleep(0.1)
 
                 channel_num = (self.client.ai_register_map[2074] >> 12) & 0x0F
-                channel_data = (self.client.ai_register_map[2074] & 0xFFF) << 0
+                channel_data = (self.client.ai_register_map[2074] & 0xFFF)
 
                 # print("%04X" % self.client.ai_register_map[2074])
+                # print(adc_num, ch_num, adc_num_old, channel_num)
 
                 if channel_num != ch_num:
                     # raise ValueError("Error with adc channel")
                     # print("error", channel_num, ch_num)
                     pass
-                self.channel_row_adc_data[adc_num_old][channel_num] = channel_data & 0xFFF
-                self.__refresh_channel_values(adc_num_old, channel_num)
+                self.channel_row_adc_data[adc_num][channel_num] = channel_data & 0xFFF
+                self.__refresh_channel_values(adc_num, channel_num)
         pass
 
     def get_channel_values(self, adc, ch_num):
@@ -159,10 +160,10 @@ class OaiKpaSTM:
         """
         with self.adc_data_lock:
             try:
-                val_list = [self.channel_adc_voltage[adc][ch_num] for ch_num in range(self.adc_param["channel_num"])
-                            for adc in range(self.adc_param["adc_num"])]
-                state_list = [self.channel_state[adc][ch_num] for ch_num in range(self.adc_param["channel_num"])
-                              for adc in range(self.adc_param["adc_num"])]
+                val_list = [self.channel_adc_voltage[adc][ch_num] for adc in range(self.adc_param["adc_num"])
+                            for ch_num in range(self.adc_param["channel_num"])]
+                state_list = [self.channel_state[adc][ch_num] for adc in range(self.adc_param["adc_num"])
+                              for ch_num in range(self.adc_param["channel_num"])]
                 return val_list, state_list
             except IndexError:
                 raise IndexError("Incorrect adc (0, 1) or channel number(0-15")

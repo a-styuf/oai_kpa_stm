@@ -164,10 +164,13 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget_qt.Ui_Form):
         """
         try:
             if self.module.state == 1:
+                value_list, state_list = self.module.get_channels_values()
                 for column in range(self.stm_table_column):
                     for row in range(self.stm_table_row):
                         adc_num, ch_num = column // 2, row + self.stm_table_row*(column % 2)
-                        value, state = self.module.get_channel_values(adc_num, ch_num)
+                        # print(adc_num, ch_num, column, row)
+                        # value, state = self.module.get_channel_values(adc_num, ch_num)
+                        value, state = value_list[adc_num*16 + ch_num], state_list[adc_num*16 + ch_num]
                         self.__fill_single_socket(self.stmTableWidget, row, 2*column+1, value,
                                                   color=self.stm_color_map.get(state, "white"))
                         name = self.cfg["user"]["channels"][str(adc_num*16 + ch_num)]
