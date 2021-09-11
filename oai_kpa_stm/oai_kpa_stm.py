@@ -67,11 +67,6 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget_qt.Ui_Form):
         self.stm_table_column, self.stm_table_row = 4, 8
         self.table_values = [[{"voltage": 0.0, "color": "gray"}for i in range(self.stm_table_row)]
                              for j in range(self.stm_table_column)]
-        # Кнопки для управления модулем
-        self.singleReadPushButton.clicked.connect(self.fill_table_data_from_stm_data)
-        self.cycleReadPushButton.clicked.connect(self.cycle_reading)
-        self.cycle_reading_flag = False
-        self.cycleReadPushButton.setStyleSheet('QLineEdit {background-color: %s;}' % "lightgray")
 
     def connection_state_check(self):
         """
@@ -139,22 +134,7 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget_qt.Ui_Form):
         the function, that update gui data output parts (table, etc). Run each <gui_update_time_ms>.
         :return: nothing
         """
-        if self.cycle_reading_flag:
-            self.fill_table_data_from_stm_data()
-        pass
-
-    def cycle_reading(self):
-        """
-        visualisation the status of cycle reading
-        :return: nothing
-        """
-        if self.cycle_reading_flag:
-            self.cycle_reading_flag = False
-            color = "lightgray"
-        else:
-            self.cycle_reading_flag = True
-            color = "darkseagreen"
-        self.cycleReadPushButton.setStyleSheet('QPushButton {background-color: %s;}' % color)
+        self.fill_table_data_from_stm_data()
         pass
 
     def fill_table_data_from_stm_data(self):
@@ -321,7 +301,7 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget_qt.Ui_Form):
         data_title_list = [self.cfg["user"]["channels"].get(str(i), str(i)) for i in range(32)]
         #
         log_title.extend(data_title_list)
-        return ";".join(log_title) + "\n"
+        return u";".join(log_title) + "\n"
 
     def generate_log_data(self):
         """
@@ -329,9 +309,9 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget_qt.Ui_Form):
         :return: data list for log-file
         """
         # обязательная часть - время в формате с.мс
-        log_title = ["%.3f" % time.perf_counter()]
+        log_title = [u"%.3f" % time.perf_counter()]
         # список данных, генерируемых модулем
-        data_title_list = ["%.3f" % value for value in self.module.get_channels_values()[0]]
+        data_title_list = [u"%.3f" % value for value in self.module.get_channels_values()[0]]
         #
         log_title.extend(data_title_list)
         return ";".join(log_title) + '\n'

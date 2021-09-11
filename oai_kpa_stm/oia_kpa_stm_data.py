@@ -11,7 +11,7 @@ class OaiKpaSTM:
     def __init__(self, *args, **kwargs):
         # разбор именованных параметров
         self.serial_number = kwargs.get('serial_num', '20713699424D')
-        self.debug = kwargs.get('debug', False)
+        self.debug = kwargs.get('debug', True)
         # создание объекта для общения по МодБас
         self.client = oai_modbus.OAI_Modbus(serial_num=[self.serial_number])
         self.client.debug_print_flag = True
@@ -48,7 +48,7 @@ class OaiKpaSTM:
         self.channel_adc_voltage = [[0 for i in range(self.adc_param["channel_num"])]
                                     for j in range(self.adc_param["adc_num"])]
         self.adc_cal_a = [[1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3],
-                          [1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 2.207E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3]]
+                          [1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3, 1.224E-3]]
         self.adc_cal_b = [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
                           [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
         self.stm_max_min_bound = {"min": [[1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
@@ -98,47 +98,85 @@ class OaiKpaSTM:
     def __stm_update(self):
         adc_num = 0
         while 1:
-            if self.client.connection_status:
-                #
-                self.client.start_continuously_queue_reading(ai=[[2074, 2078]], ao=[], write=[])
-                #
-                self.client.write_regs(offset=1246, data_list=[1, 0, 0, 1,
-                                                               0, 1, 0, 5,
-                                                               0, 0])
-                self.client.write_regs(offset=1318, data_list=[1, 0, 0, 1, 2])
-                #
-                self.iteration += 1
-                ch_num = self.iteration % self.adc_param["channel_num"]
-                adc_num_old = adc_num
-                adc_num = (self.iteration//self.adc_param["channel_num"]) % self.adc_param["adc_num"]
-                # set cs
-                # set control register
-                control_register = ((0x02 << 10) | ((ch_num & 0x0F) << 6) | (0x03 << 4) | (0x01 << 2) | (0x01 << 0)) << 4
-                self.client.write_regs(offset=1276, data_list=[control_register, 0x00])
-
-                if adc_num == 0:
-                    self.client.write_regs(offset=1266, data_list=[1, 0, 1, 1, 0, 1, 1])
-                else:
-                    self.client.write_regs(offset=1266, data_list=[1, 0, 1, 1, 0, 1, 2])
-                # release cs
-                # stm_mod.client.write_regs(offset=1060, data_list=[0x1C00, 0x0000, 0x0000, 0x0000])
-                # stm_mod.client.write_regs(offset=1064, data_list=[0x1C00, 0x0000, 0x0000, 0x0000])
-                #
-                time.sleep(0.1)
-
-                channel_num = (self.client.ai_register_map[2074] >> 12) & 0x0F
-                channel_data = (self.client.ai_register_map[2074] & 0xFFF)
-
-                # print("%04X" % self.client.ai_register_map[2074])
-                # print(adc_num, ch_num, adc_num_old, channel_num)
-
-                if channel_num != ch_num:
-                    # raise ValueError("Error with adc channel")
-                    # print("error", channel_num, ch_num)
-                    pass
-                self.channel_row_adc_data[adc_num][channel_num] = channel_data & 0xFFF
-                self.__refresh_channel_values(adc_num, channel_num)
+            # adc_num = self.__get_stm_val_by_register(adc_num)
+            self.__get_automative_stm_val()
+            time.sleep(0.1)
         pass
+
+    def __get_stm_val_by_register(self, adc_num):
+        """
+        Get ADC values by  simple registers
+        :param adc_num: number of adc channek
+        :return: new adc_ chan
+        """
+        if self.client.connection_status:
+            #
+            self.client.start_continuously_queue_reading(ai=[[2074, 2078]], ao=[], write=[])
+            #
+            self.client.write_regs(offset=1246, data_list=[1, 0, 0, 1,
+                                                           0, 1, 0, 5,
+                                                           0, 0])
+            self.client.write_regs(offset=1318, data_list=[1, 0, 0, 1, 2])
+            #
+            self.iteration += 1
+            ch_num = self.iteration % self.adc_param["channel_num"]
+            adc_num_old = adc_num
+            adc_num = (self.iteration // self.adc_param["channel_num"]) % self.adc_param["adc_num"]
+            # set cs
+            # set control register
+            control_register = ((0x02 << 10) | ((ch_num & 0x0F) << 6) | (0x03 << 4) | (0x01 << 2) | (0x01 << 0)) << 4
+            self.client.write_regs(offset=1276, data_list=[control_register, 0x00])
+
+            if adc_num == 0:
+                self.client.write_regs(offset=1266, data_list=[1, 0, 1, 1, 0, 1, 1])
+            else:
+                self.client.write_regs(offset=1266, data_list=[1, 0, 1, 1, 0, 1, 2])
+            # release cs
+            # stm_mod.client.write_regs(offset=1060, data_list=[0x1C00, 0x0000, 0x0000, 0x0000])
+            # stm_mod.client.write_regs(offset=1064, data_list=[0x1C00, 0x0000, 0x0000, 0x0000])
+            #
+            time.sleep(0.1)
+
+            channel_num = (self.client.ai_register_map[2074] >> 12) & 0x0F
+            channel_data = (self.client.ai_register_map[2074] & 0xFFF)
+
+            # print("%04X" % self.client.ai_register_map[2074])
+            print(adc_num, ch_num, adc_num_old, channel_num)
+
+            if channel_num != ch_num:
+                # raise ValueError("Error with adc channel")
+                # print("error", channel_num, ch_num)
+                pass
+            self.channel_row_adc_data[adc_num][channel_num] = channel_data & 0xFFF
+            self.__refresh_channel_values(adc_num, channel_num)
+            return adc_num
+
+    def __get_automative_stm_val(self):
+        """
+        Get ADC values by automative
+        :return: new adc_ chan
+        """
+        if self.client.connection_status:
+            #
+            self.client.write_regs(offset=1246, data_list=[1, 0, 0, 1,
+                                                           0, 1, 0, 5,
+                                                           0, 0])
+            self.client.write_regs(offset=1318, data_list=[1, 0, 0, 1, 2])
+            self.client.write_regs(offset=1390, data_list=[1, 1, 0])
+            time.sleep(0.005)
+            self.client.write_regs(offset=1390, data_list=[1, 0, 0])
+            time.sleep(0.005)
+            #
+            self.client.read_regs(target="ai", read_ranges=[[2153, 2153 + 16], [2173, 2173 + 16]])
+            #
+            for adc in range(self.adc_param["adc_num"]):
+                offset = 2153 if adc == 0 else 2173
+                for channel in range(self.adc_param["channel_num"]):
+                    self.channel_row_adc_data[adc][channel] = self.client.ai_register_map[offset+channel] & 0xFFF
+                    self.__refresh_channel_values(adc, channel)
+
+            # print(["%04X" % (val & 0xFFF) for val in self.client.ai_register_map[2153:2153+16]], ["%04X" % (val & 0xFFF) for val in self.client.ai_register_map[2173:2173+16]])
+            time.sleep(0.5)
 
     def get_channel_values(self, adc, ch_num):
         """
