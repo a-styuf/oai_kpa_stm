@@ -9,8 +9,12 @@ import os
 import re
 import json
 # модули ОАИ_КПА
-import oai_kpa_stm_widget_qt
-import oia_kpa_stm_data
+try:
+    from . import oai_kpa_stm_widget_qt
+    from . import oia_kpa_stm_data
+except Exception as ex:
+    import oai_kpa_stm_widget_qt
+    import oia_kpa_stm_data
 
 
 class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget_qt.Ui_Form):

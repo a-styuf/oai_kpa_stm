@@ -2,9 +2,10 @@
 log
 dist
 tests
+cfg
 poetry.lock
 __pycache__
-/oai_kpa_stm/log/
-/oai_kpa_stm/.idea/
-/log/
-/.idea/
+oai_kpa_stm/log/
+oai_kpa_stm/.idea/
+oai_kpa_stm/cfg
+venv
