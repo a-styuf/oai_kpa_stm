@@ -10,7 +10,7 @@ import json
 class OaiKpaSTM:
     def __init__(self, *args, **kwargs):
         # разбор именованных параметров
-        self.serial_number = kwargs.get('serial_num', '20713699424D')
+        self.serial_number = kwargs.get('serial_num', '20723699424D')
         self.debug = kwargs.get('debug', True)
         # создание объекта для общения по МодБас
         self.client = oai_modbus.OAI_Modbus(serial_num=[self.serial_number])
@@ -55,10 +55,10 @@ class OaiKpaSTM:
                                           1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
                                           [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
                                           1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]],
-                                  "max": [[2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0,
-                                          2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0],
-                                          [2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0,
-                                           2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]]
+                                  "max": [[1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6,
+                                          1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6],
+                                          [1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6,
+                                           1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6]]
                                   }
         self.channel_state = [[0 for i in range(self.adc_param["channel_num"])]
                               for j in range(self.adc_param["adc_num"])]  # (0 - open, 1 - short, 2 - undefined)

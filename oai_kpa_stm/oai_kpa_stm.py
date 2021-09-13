@@ -27,7 +27,7 @@ class ClientGUIWindow(QtWidgets.QWidget, oai_kpa_stm_widget_qt.Ui_Form):
         self.uniq_name = kwargs.get("uniq_name", 'oai_kpa_stm_un')
         # настройки по умолчанию
         # настройки не для изменения (одинаковые для каждого типа плат)
-        self.core_cfg = {'serial_num': '20713699424D',
+        self.core_cfg = {'serial_num': '20723699424D',
                          'widget': True}
         # настройки для вашего модуля (разные для каждого типа плат)
         self.channels_default_parameters = {num: "АЦП %d К %d" % (num//16, num%16)

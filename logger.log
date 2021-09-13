@@ -1,0 +1,89 @@
+INFO:ex:device not connected
+INFO:ex:Detected the following serial ports:
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '2057359A5748', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', '20723699424D']
+INFO:ex:connect to: 20723699424D, port: COM5
+INFO:ex:success connection
+WARNING:ex:'ModbusIOException' object has no attribute 'registers'
+ERROR:ex:Modbus read timeout error
+WARNING:ex:'ModbusIOException' object has no attribute 'registers'
+ERROR:ex:Modbus read timeout error
+WARNING:ex:'ModbusIOException' object has no attribute 'registers'
+ERROR:ex:Modbus read timeout error
+ERROR:ex:'ModbusIOException' object has no attribute 'address'
+INFO:ex:device not connected
+INFO:ex:Detected the following serial ports:
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '2057359A5748', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '2057359A5748', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', '20723699424D']
+INFO:ex:connect to: 20723699424D, port: COM5
+ERROR:pymodbus.client.sync:could not open port 'COM5': PermissionError(13, 'Отказано в доступе.', None, 5)
+WARNING:ex:failed connection
+INFO:ex:device not connected
+INFO:ex:Detected the following serial ports:
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '2057359A5748', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '2057359A5748', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '2057359A5748', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', '20723699424D']
+INFO:ex:connect to: 20723699424D, port: COM5
+INFO:ex:success connection
+ERROR:ex:'ModbusIOException' object has no attribute 'address'
+ERROR:ex:error in write_regs: no connection with device. Try to reconnect
+ERROR:ex:error in write_regs: no connection with device. Try to reconnect
+ERROR:ex:error in write_regs: no connection with device. Try to reconnect
+ERROR:pymodbus.client.sync:could not open port 'COM5': FileNotFoundError(2, 'Не удается найти указанный файл.', None, 2)
+ERROR:ex:Modbus Error: [Connection] Failed to connect[ModbusSerialClient(rtu baud[115200])]
+WARNING:ex:oai_modbus thread is None
+ERROR:ex:Modbus read timeout error
+ERROR:pymodbus.client.sync:could not open port 'COM5': FileNotFoundError(2, 'Не удается найти указанный файл.', None, 2)
+ERROR:ex:Modbus Error: [Connection] Failed to connect[ModbusSerialClient(rtu baud[115200])]
+WARNING:ex:oai_modbus thread is None
+ERROR:ex:Modbus read timeout error
+INFO:ex:device not connected
+INFO:ex:Detected the following serial ports:
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '2057359A5748', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '2057359A5748', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '2057359A5748', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '2057359A5748', 'com: ', 'A700ECSAA']
+INFO:ex:Detected the following serial ports:
+WARNING:ex:Devices not detected
+INFO:ex:device not connected
+INFO:ex:Detected the following serial ports:
+INFO:ex:['ID: ', '20723699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20673699424D', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '2057359A5748', 'com: ', 'A700ECSAA']
+INFO:ex:['ID: ', '20723699424D', 'com: ', '20673699424D']
+INFO:ex:['ID: ', '20673699424D', 'com: ', '20673699424D']
+INFO:ex:connect to: 20673699424D, port: COM9
+INFO:ex:success connection
+WARNING:ex:'ModbusIOException' object has no attribute 'registers'
+ERROR:ex:Modbus read timeout error
+WARNING:ex:'ModbusIOException' object has no attribute 'registers'
+ERROR:ex:Modbus read timeout error
+ERROR:pymodbus.client.sync:could not open port 'COM9': FileNotFoundError(2, 'Не удается найти указанный файл.', None, 2)
+ERROR:ex:Modbus Error: [Connection] Failed to connect[ModbusSerialClient(rtu baud[115200])]
+ERROR:ex:error in write_regs: no connection with device. Try to reconnect
+ERROR:ex:error in write_regs: no connection with device. Try to reconnect
+ERROR:ex:error in write_regs: no connection with device. Try to reconnect
+ERROR:pymodbus.client.sync:could not open port 'COM9': FileNotFoundError(2, 'Не удается найти указанный файл.', None, 2)
+ERROR:ex:Modbus Error: [Connection] Failed to connect[ModbusSerialClient(rtu baud[115200])]
+WARNING:ex:oai_modbus thread is None
+ERROR:ex:Modbus read timeout error
+ERROR:pymodbus.client.sync:could not open port 'COM9': FileNotFoundError(2, 'Не удается найти указанный файл.', None, 2)
+ERROR:ex:Modbus Error: [Connection] Failed to connect[ModbusSerialClient(rtu baud[115200])]
+WARNING:ex:oai_modbus thread is None
+ERROR:ex:Modbus read timeout error
