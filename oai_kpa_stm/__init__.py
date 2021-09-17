@@ -1,4 +1,4 @@
-__version__ = '0.1.7'
+__version__ = '0.1.8'
 
 from .oai_kpa_stm import *
 from .oia_kpa_stm_data import *
